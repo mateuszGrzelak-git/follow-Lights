@@ -4,10 +4,10 @@ namespace backend.Services
 {
     public interface IUserManager
     {
-        Task<bool> CreateUser(User user);
-        Task<User?> GetUser(Guid id);
-        Task<IEnumerable<User>> GetAllUsers();
-        Task<bool> UpdateUsers(User user);
-        Task<bool> DeleteUser(Guid id);
+        bool CreateUser(User user);
+        User? GetUser(Guid id);
+        IEnumerable<User> GetAllUsers(IEnumerable<User> result);
+        bool UpdateUsers(User user);
+        bool DeleteUser(Guid id);
     }
 }
