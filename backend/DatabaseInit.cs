@@ -1,18 +1,19 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend
 {
-    public class DatabaseManagement
+    public class DatabaseInit : DbContext
     {
         SqlConnection conn;
 
-        public DatabaseManagement()
+        public DatabaseInit()
         {
             conn = new SqlConnection();
             conn.Open();
         }
 
-        ~DatabaseManagement()
+        ~DatabaseInit()
         {
             conn.Close();
         }
