@@ -1,21 +1,11 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using backend.Domain;
 
 namespace backend
 {
     public class DatabaseInit : DbContext
     {
-        SqlConnection conn;
-
-        public DatabaseInit()
-        {
-            conn = new SqlConnection();
-            conn.Open();
-        }
-
-        ~DatabaseInit()
-        {
-            conn.Close();
-        }
+        public DbSet<User> Users { get; set; }
     }
 }

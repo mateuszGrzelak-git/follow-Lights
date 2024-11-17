@@ -1,29 +1,69 @@
 ﻿using backend.Domain;
-using System.Collections;
+using backend.Data;
+using backend;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 
 namespace backend.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        public void addUser(User user)
-        {
+        private readonly DatabaseInit _context;
 
-        }
-        public void deleteUser(Guid id)
+        public UserRepository(DatabaseInit context)
         {
+            _context = context;
+        }
 
-        }
-        public User getUser(Guid id)
+        public void AddUser(User user)
         {
-            return new User();
+            _context.Users.Add(user);
+            _context.SaveChanges();
         }
-        public IEnumerable<User> getAllUsers(IEnumerable<User> enumerable)
+
+        public void DeleteUser(Guid id)
         {
-            return enumerable;
+            var user = _context.Users.Find(id);
+            if (user != null)
+            {
+                _context.Users.Remove(user);
+                _context.SaveChanges();
+            }
         }
-        public bool updateUSer(User user)
+
+        public User GetUser(Guid id)
         {
-            return false; 
+            var result = _context.Users.Find(id);
+            if (result != null)
+            {
+                return result;
+            }
+            else
+            {
+                throw new Exception("User is NULL");
+            }
+        }
+
+        public IEnumerable<User> GetAllUsers()
+        {
+            return _context.Users.ToList();
+        }
+
+        public bool UpdateUser(User user)
+        {
+            var existingUser = _context.Users.Find(user.Id);
+            if (existingUser != null)
+            {
+                existingUser.Username = user.Username;
+                existingUser.Email = user.Email;
+
+                _context.Users.Update(existingUser);
+                _context.SaveChanges();
+                return true;
+            }
+
+            return false;
         }
     }
 }

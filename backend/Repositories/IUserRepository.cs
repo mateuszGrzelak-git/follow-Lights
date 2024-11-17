@@ -4,10 +4,10 @@ namespace backend.Repositories
 {
     public interface IUserRepository
     {
-        public void addUser(User user);
-        public void deleteUser(Guid id);
-        public User getUser(Guid id);
-        public IEnumerable<User> getAllUsers(IEnumerable<User> enumerable);
-        public bool updateUSer(User user);
+        public void AddUser(User user);
+        public void DeleteUser(Guid id);
+        public User GetUser(Guid id);
+        public IEnumerable<User> GetAllUsers();
+        public bool UpdateUser(User user);
     }
 }
