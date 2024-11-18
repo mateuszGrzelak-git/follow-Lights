@@ -1,27 +1,80 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using backend.Requests;
+using backend.Responses;
+using backend.Domain;
+using backend.Repositories;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
 
 namespace backend.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
-        [HttpGet("username")]
-        public string GetUsername()
+        private readonly IUserRepository _userRepository;
+
+        public UserController(IUserRepository userRepository)
         {
-            return "";
+            _userRepository = userRepository;
+        }
+        
+        [HttpPost]
+        public IActionResult CreateUser([FromBody] CreateUserRequest request)
+        {
+            var user = new User
+            {
+                Id = Guid.NewGuid(),
+                Username = request.Username,
+                Email = request.Email,
+                Password = request.Password
+            };
+            
+            _userRepository.AddUser(user);
+            
+            var response = new UserResponse
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Email = user.Email
+            };
+            
+            return CreatedAtAction(nameof(GetUser), new { id = user.Id }, response);
         }
 
-        [HttpGet("email")]
-        public string GetEmail()
+        [HttpGet("{id}")]
+        public IActionResult GetUser(Guid id)
         {
-            return "";
+            var user = _userRepository.GetUser(id);
+            if (user == null)
+                return NotFound();
+            
+            var response = new UserResponse
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Email = user.Email
+            };
+
+            return Ok(response);
         }
 
-        [HttpGet("id")]
-        public int GetID()
+        [HttpGet]
+        public IActionResult GetAllUsers()
         {
-            return 0;
+            var users = _userRepository.GetAllUsers();
+            
+            var response = new GetAllUsersResponse
+            {
+                Users = users.Select(user => new UserResponse
+                {
+                    Id = user.Id,
+                    Username = user.Username,
+                    Email = user.Email
+                }).ToList()
+            };
+
+            return Ok(response);
         }
     }
 }

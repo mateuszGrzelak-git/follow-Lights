@@ -1,5 +1,9 @@
-namespace backend.Requests;
-public class DeleteUserRequest
+using System;
+
+namespace backend.Requests
 {
-	public Guid Id { get; init; }
+    public class DeleteUserRequest
+    {
+        public Guid UserId { get; set; }
+    }
 }
