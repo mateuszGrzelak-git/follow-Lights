@@ -1,5 +1,5 @@
 import Lights from "./lights/page";
-import DashBoard from "./satistics/page";
+import DashBoard from "./statistics/page";
 import Link from "next/link";
 
 export default function Home() {
