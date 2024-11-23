@@ -1,27 +1,36 @@
 "use client";
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import Light from './ui/light';
 
 type LightHandle = {
     lightEvent: () => void;
+    isOn: () => boolean;
 };
 
 const count = 9;
 
 export default function Lights() {
     const lightsRef = useRef<(LightHandle | null)[]>([]);
-
-    useEffect(() => {
-        lightsRef.current = Array(count).fill(null);
-    }, []);
+    const [activeCount, setActiveCount] = useState(0);
 
     const turnOnAllLights = () => {
+        let turnedOnCount = 0;
+
         lightsRef.current.forEach((light) => {
             if (light) {
-                light.lightEvent();
+                if (!light.isOn()) {
+                    light.lightEvent();
+                    turnedOnCount++;
+                }
             }
         });
+
+        setActiveCount((prev) => prev + turnedOnCount);
+    };
+
+    const updateActiveCount = (isOn: boolean) => {
+        setActiveCount((prev) => (isOn ? prev + 1 : prev - 1));
     };
 
     return (
@@ -29,12 +38,12 @@ export default function Lights() {
             <div className="grid grid-cols-3 gap-4">
                 {Array.from({ length: count }).map((_, index) => (
                     <Light
-                    key={index}
-                    ref={(el) => {
-                        lightsRef.current[index] = el;
-                    }}
-                />
-                
+                        key={index}
+                        ref={(el) => {
+                            lightsRef.current[index] = el;
+                        }}
+                        onStateChange={updateActiveCount}
+                    />
                 ))}
             </div>
 
@@ -45,7 +54,7 @@ export default function Lights() {
                 Turn On All Lights
             </button>
 
-            <p className="text-9xl/[300px]">Wynik</p>
+            <p className="mt-4 text-xl font-bold">Wynik: {activeCount}</p>
         </React.Fragment>
     );
 }
