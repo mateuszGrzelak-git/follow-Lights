@@ -1,10 +1,8 @@
-// src/components/Card.tsx
 import React from 'react';
 
-// Typowanie propsów komponentu Card
 interface CardProps {
   title: string;
-  value: string | number;  // Może być tekst lub liczba
+  value: string | number;
 }
 
 const Card: React.FC<CardProps> = ({ title, value }) => {
