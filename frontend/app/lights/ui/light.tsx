@@ -8,10 +8,9 @@ const Light = forwardRef<LightHandle, any>((props, ref) => {
     const [backgroundColor, setBackgroundColor] = useState<string>('white');
     const lightRef = useRef<HTMLDivElement>(null);
 
-    // Umożliwienie wywołania metody lightEvent z rodzica
     useImperativeHandle(ref, () => ({
         lightEvent: () => {
-            // Przełączanie koloru
+
             setBackgroundColor(prevColor => (prevColor === 'white' ? 'black' : 'white'));
         }
     }));
@@ -23,7 +22,6 @@ const Light = forwardRef<LightHandle, any>((props, ref) => {
             style={{ backgroundColor }}
             onClick={() => setBackgroundColor(prevColor => (prevColor === 'white' ? 'black' : 'white'))} // Przełączanie koloru na kliknięcie
         >
-            {/* Opcjonalnie możesz dodać inne elementy */}
         </div>
     );
 });

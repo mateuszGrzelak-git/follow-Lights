@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import Light from './ui/light';
 
-// Typ dla referencji komponentów Light
 type LightHandle = {
     lightEvent: () => void;
 };
@@ -11,13 +10,16 @@ type LightHandle = {
 const count = 9;
 
 export default function Lights() {
-    const lightsRef = useRef<(LightHandle | null)[]>(Array(count).fill(null));
+    const lightsRef = useRef<(LightHandle | null)[]>([]);
 
-    // Funkcja zapalająca wszystkie lampki
+    useEffect(() => {
+        lightsRef.current = Array(count).fill(null);
+    }, []);
+
     const turnOnAllLights = () => {
         lightsRef.current.forEach((light) => {
             if (light) {
-                light.lightEvent(); // Wywołanie lightEvent dla każdej lampki
+                light.lightEvent();
             }
         });
     };
@@ -25,16 +27,15 @@ export default function Lights() {
     return (
         <React.Fragment>
             <div className="grid grid-cols-3 gap-4">
-                {Array.from({ length: count }).map((_, index) => {
-                    const lightRef = React.createRef<LightHandle>();
-                    lightsRef.current[index] = lightRef.current; // Przechowywanie referencji
-                    return (
-                        <Light
-                            key={index}
-                            ref={lightRef} // Przekazanie ref bezpośrednio
-                        />
-                    );
-                })}
+                {Array.from({ length: count }).map((_, index) => (
+                    <Light
+                    key={index}
+                    ref={(el) => {
+                        lightsRef.current[index] = el;
+                    }}
+                />
+                
+                ))}
             </div>
 
             <button

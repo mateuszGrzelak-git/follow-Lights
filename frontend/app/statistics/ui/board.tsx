@@ -1,9 +1,7 @@
-// src/components/Dashboard.tsx
 import React from 'react';
 import Sidebar from './sidebar';
 import Card from './card';
 
-// Typowanie dla Dashboard (jeśli przekazujesz jakieś dane przez props, w tym przypadku nie przekazujemy żadnych danych)
 const Dashboard: React.FC = () => {
   return (
     <div className="flex">
