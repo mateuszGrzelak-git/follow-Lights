@@ -18,6 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CopperDevs.Matchmaking" Version="1.4.5" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.0" />

@@ -1,4 +1,4 @@
-﻿namespace backend.Requests
+﻿namespace backend.Reests
 {
     public class GetRankRequest
     {
