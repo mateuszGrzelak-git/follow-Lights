@@ -1,6 +1,4 @@
-using System;
-
-namespace backend.Requests
+namespace backend.Requests.User
 {
     public class DeleteUserRequest
     {

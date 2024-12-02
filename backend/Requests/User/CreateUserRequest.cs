@@ -1,4 +1,4 @@
-namespace backend.Requests;
+namespace backend.Requests.User;
     public class CreateUserRequest
     {
         public string Username { get; init; } = default!;

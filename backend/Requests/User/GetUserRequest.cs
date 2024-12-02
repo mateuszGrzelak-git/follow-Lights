@@ -1,4 +1,4 @@
-﻿namespace backend.Reques;
+﻿namespace backend.Requests.User
 {
     public class GetUserRequest
     {
