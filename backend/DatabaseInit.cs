@@ -6,6 +6,7 @@ namespace backend
 {
     public class DatabaseInit : DbContext
     {
+        public DatabaseInit(DbContextOptions<DatabaseInit> options) : base(options) { }
         public DbSet<User> Users { get; set; }
     }
 }
