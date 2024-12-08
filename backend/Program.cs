@@ -1,6 +1,3 @@
-using backend.Repositories;
-using backend;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
