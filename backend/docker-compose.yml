@@ -3,7 +3,7 @@ version: '3.8'
 services:
   app:
     build:
-      context: .  # U¿ywa pliku Dockerfile w bie¿¹cym katalogu
+      context: .
     ports:
       - "8080:8080"
       - "8081:8081"
@@ -13,8 +13,7 @@ services:
       - DB_NAME=your_database_name
       - DB_USER=sa
       - DB_PASSWORD=yourStrongPassword123
-    depends_on:
-      - mssql-server
+    network_mode: host
 
   mssql-server:
     image: mcr.microsoft.com/mssql/server:2022-latest
@@ -26,12 +25,9 @@ services:
       - "1433:1433"
     volumes:
       - mssql-data:/var/opt/mssql
-    networks:
-      - app-network
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    network_mode: host
 
 volumes:
   mssql-data:
 
-networks:
-  app-network:
-    driver: bridge

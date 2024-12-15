@@ -1,0 +1,13 @@
+CREATE DATABASE your_database_name;
+GO
+
+USE your_database_name;
+GO
+
+CREATE TABLE Users (
+    Id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+    Username NVARCHAR(255) NOT NULL,
+    Email NVARCHAR(255) NOT NULL,
+    Password NVARCHAR(255) NOT NULL
+);
+GO
