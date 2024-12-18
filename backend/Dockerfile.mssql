@@ -1,0 +1,34 @@
+FROM mcr.microsoft.com/mssql/server:2022-latest
+
+# Ustawiamy zmienną środowiskową, aby nie pytało o potwierdzenie instalacji
+ENV ACCEPT_EULA=Y
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Przełącz się na użytkownika root
+USER root
+
+# Instalacja zależności i rozwiązanie konfliktu pakietów
+RUN apt-get update && apt-get install -y \
+    curl \
+    apt-transport-https \
+    gnupg2 && \
+    curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
+    curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list && \
+    apt-get update && \
+    # Usunięcie problematycznych pakietów, aby uniknąć konfliktów
+    apt-get remove -y libodbc2 unixodbc-common && \
+    # Instalacja mssql-tools i powiązanych zależności
+    ACCEPT_EULA=Y apt-get install -y \
+    mssql-tools \
+    unixodbc-dev && \
+    echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> /etc/bash.bashrc && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Przełącz się z powrotem na użytkownika domyślnego SQL Server
+USER mssql
+
+# Skopiowanie pliku inicjalizacyjnego
+COPY ./init.sql /init.sql
+
+# Domyślne CMD kontenera
+CMD ["/opt/mssql/bin/sqlservr"]

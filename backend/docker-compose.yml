@@ -16,7 +16,9 @@ services:
     network_mode: host
 
   mssql-server:
-    image: mcr.microsoft.com/mssql/server:2022-latest
+    build:
+       context: .
+       dockerfile: Dockerfile.mssql
     container_name: mssql-server
     environment:
       - ACCEPT_EULA=Y
@@ -25,8 +27,9 @@ services:
       - "1433:1433"
     volumes:
       - mssql-data:/var/opt/mssql
-      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
-    network_mode: host
+      - ./init.sql:/init.sql
+    command: /bin/bash -c " /opt/mssql/bin/sqlservr & sleep 30 && /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P yourStrongPassword123 -d master -i /init.sql"
+    network_mode: bridge
 
 volumes:
   mssql-data:
