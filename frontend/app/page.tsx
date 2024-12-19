@@ -11,5 +11,8 @@ export default function Home() {
     <Link href="/login">Login</Link>
     < br/>
     <Link href="/register">Register</Link>
+    < br/>
+    <Link href="/gameVariations">Variations</Link>
+    < br/>
   </>
 }

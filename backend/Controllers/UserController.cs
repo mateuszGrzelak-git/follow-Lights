@@ -21,6 +21,7 @@ namespace backend.Controllers
         public IActionResult CreateUser([FromBody] CreateUserRequest request)
         {
             var user = new User
+                
             {
                 Id = Guid.NewGuid(),
                 Username = request.Username,
