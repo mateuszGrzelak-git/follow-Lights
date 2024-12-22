@@ -1,4 +1,5 @@
-﻿using backend.Repositories;
+﻿using backend.Domain;
+using backend.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers;
@@ -12,5 +13,17 @@ public class UserProgressController : ControllerBase
     public UserProgressController(IUserProgressRepository userProgressRepository)
     {
         _userProgressRepository = userProgressRepository;
+    }
+
+    [HttpGet]
+    public UserProgress GetUserProgress(Guid userId)
+    {
+        return _userProgressRepository.GetUserProgress(userId); 
+    }
+
+    [HttpPost]
+    public void SetUserProgress(Guid userId, UserProgress userProgress)
+    {
+        _userProgressRepository.UpdateUserProgress(userProgress);
     }
 }

@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "backend", "backend.csproj",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "..\tests\tests.csproj", "{EE121D71-04FA-4B26-AE5D-6E87D90E638D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mailing", "Mailing\Mailing.csproj", "{4C98D546-B13F-4624-AA91-4AEBA290C644}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{EE121D71-04FA-4B26-AE5D-6E87D90E638D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE121D71-04FA-4B26-AE5D-6E87D90E638D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE121D71-04FA-4B26-AE5D-6E87D90E638D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4C98D546-B13F-4624-AA91-4AEBA290C644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C98D546-B13F-4624-AA91-4AEBA290C644}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C98D546-B13F-4624-AA91-4AEBA290C644}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C98D546-B13F-4624-AA91-4AEBA290C644}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

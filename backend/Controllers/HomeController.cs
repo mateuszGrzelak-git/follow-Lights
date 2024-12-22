@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using backend.Mailing;
+using Microsoft.AspNetCore.Mvc;
 
-namespace Mailing;
-
+[ApiController]
+[Route("api/Email")]
 public class HomeController : Controller
 {
     private readonly IEmailSender emailSender;

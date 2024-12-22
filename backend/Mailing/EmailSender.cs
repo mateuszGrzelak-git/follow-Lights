@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using System.Net.Mail;
-namespace Mailing;
+using backend.Mailing;
 
 public class EmailSender : IEmailSender
 {

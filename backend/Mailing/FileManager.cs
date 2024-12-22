@@ -1,25 +1,26 @@
-/*using System.IO;
-using System;
+﻿using System.IO;
 
-namespace Mailing;
+namespace backend.Mailing;
 
 public class FileManager
 {
     private readonly string _filePath;
-    private readonly string _fileData;
+    private readonly byte[] _fileData;
 
-    FileManager(string filePath, string fileData)
+    FileManager(string filePath, byte[]fileData)
     {
         _filePath = filePath;
         _fileData = fileData;
     }
-    
-    if (!File.Exists(_filePath))
+
+    public void UploadFile()
     {
-        using (FileStream fs = File.Create(_filePath))
+        if (!File.Exists(_filePath))
         {
-            fs.Write(_fileData, 0, _fileData.Length);
+            using (FileStream fs = File.Create(_filePath))
+            {
+                fs.Write(_fileData, 0, _fileData.Length);
+            }
         }
     }
 }
-*/
