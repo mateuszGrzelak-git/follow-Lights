@@ -4,6 +4,8 @@ import React, { useRef, useState } from "react";
 import Light from "./ui/light";
 
 type LightHandle = {
+  //do light event przyjęto typ void
+  //javascript używa function a nie typy funkcji
   lightEvent: () => void;
   isOn: () => boolean;
 };
