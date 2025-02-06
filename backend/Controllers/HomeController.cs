@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 [Route("api/Email")]
 public class HomeController : Controller
 {
-    private readonly IEmailSender emailSender;
+    private readonly EmailSender emailSender;
 
-    public HomeController(IEmailSender emailSender)
+    public HomeController(EmailSender emailSender)
     {
         this.emailSender = emailSender;
     }

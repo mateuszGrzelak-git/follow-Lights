@@ -2,7 +2,7 @@
 using System.Net.Mail;
 using backend.Mailing;
 
-public class EmailSender : IEmailSender
+public class EmailSender
 {
     public Task SendEmailAsync(string email, string subject, string message)
     {

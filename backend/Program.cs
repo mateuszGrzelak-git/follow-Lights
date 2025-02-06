@@ -20,7 +20,7 @@ builder.Services.AddDbContext<DatabaseInit>(options =>
 });
 
 // Rejestracja IUserRepository i UserRepository
-builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<UserRepository, UserRepository>();
 
 var app = builder.Build();
 

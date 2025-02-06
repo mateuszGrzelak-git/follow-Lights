@@ -3,7 +3,7 @@ using backend.Domain;
 
 namespace backend.Services
 {
-    public class UserManager : IUserManager
+    public class UserManager
     {
         public bool CreateUser(User user)
         {

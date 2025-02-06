@@ -2,7 +2,7 @@
 
 namespace backend.Repositories;
 
-public class UserProgressRepository : IUserProgressRepository
+public class UserProgressRepository
 {
     private readonly DatabaseInit _context;
 

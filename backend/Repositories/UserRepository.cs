@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace backend.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository
     {
         private readonly DatabaseInit _context;
 

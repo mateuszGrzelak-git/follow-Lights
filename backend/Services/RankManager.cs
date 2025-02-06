@@ -3,7 +3,7 @@ using System.Collections.Specialized;
 
 namespace backend.Services
 {
-    public class RankManager : IRankManager
+    public class RankManager
     {
         private int rankCount;
         private OrderedDictionary rankDistribution;

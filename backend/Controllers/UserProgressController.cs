@@ -8,9 +8,9 @@ namespace backend.Controllers;
 [Route("api/[controller]")]
 public class UserProgressController : ControllerBase
 {
-    private readonly IUserProgressRepository _userProgressRepository;
+    private readonly UserProgressRepository _userProgressRepository;
 
-    public UserProgressController(IUserProgressRepository userProgressRepository)
+    public UserProgressController(UserProgressRepository userProgressRepository)
     {
         _userProgressRepository = userProgressRepository;
     }
