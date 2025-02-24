@@ -19,3 +19,32 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+#navBar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 25%;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+#lights, #statistics, #login, #register, #variations, a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+#lights, #statistics, #login, #register, #variations, a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+#lights, #statistics, #login, #register, #variations, a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
