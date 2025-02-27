@@ -8,9 +8,9 @@ export default function Home() {
 
 
   <ul id="navBar">
-    <li><Link  href="/lights" id="lights">lights</Link>
+    <li><Link  href="/lights" id="lights">Lights</Link>
     </li><li>
-    <Link  href="/statistics" id="statistics">statistics</Link>
+    <Link  href="/statistics" id="statistics">Statistics</Link>
     </li><li>
     <Link href="/login" id="login">Login</Link>
     </li><li>
@@ -18,6 +18,7 @@ export default function Home() {
     </li><li>
     <Link href="/gameVariations" id="variations">Variations</Link>
     </li><li>
+    <Link href="/preCompetitive" id="preCompetitive">Competitive</Link>
   <Tooltip/>
   </li>
   </ul>

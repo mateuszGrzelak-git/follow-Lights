@@ -21,16 +21,25 @@ namespace backend.Controllers
         public IActionResult CreateUser([FromBody] CreateUserRequest request)
         {
             var user = new User
-                
             {
                 Id = Guid.NewGuid(),
                 Username = request.Username,
                 Email = request.Email,
                 Password = request.Password
             };
-            
+
+            var userProgress = new UserProgress
+            {
+                Id = Guid.NewGuid(),
+                UserId = user.Id,
+                Rank = 0,
+                UpdateTime = DateTime.UtcNow
+            };
+
             _userRepository.AddUser(user);
-            
+            //_userRepository.AddUserProgress(userProgress);
+
+
             var response = new UserResponse
             {
                 Id = user.Id,

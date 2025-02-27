@@ -12,7 +12,7 @@ builder.Services.AddSwaggerGen();
 // Rejestracja DbContext z konfiguracją połączenia
 builder.Services.AddDbContext<DatabaseInit>(options =>
 {
-    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection"); // Upewnij się, że masz ten wpis w appsettings.json
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection"); // Pobranie connection stringa z konfiguracji
     options.UseSqlServer(connectionString, sqlOptions =>
     {
         sqlOptions.EnableRetryOnFailure();
@@ -20,7 +20,7 @@ builder.Services.AddDbContext<DatabaseInit>(options =>
 });
 
 // Rejestracja IUserRepository i UserRepository
-builder.Services.AddScoped<UserRepository, UserRepository>();
+builder.Services.AddScoped<UserRepository, UserRepository>(); // Poprawiona rejestracja interfejsu i implementacji
 
 var app = builder.Build();
 

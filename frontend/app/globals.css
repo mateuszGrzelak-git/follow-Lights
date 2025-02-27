@@ -32,19 +32,19 @@ body {
   overflow: auto;
 }
 
-#lights, #statistics, #login, #register, #variations, a {
+#lights, #statistics, #login, #register, #variations, #preCompetitive, a {
   display: block;
   color: #000;
   padding: 8px 16px;
   text-decoration: none;
 }
 
-#lights, #statistics, #login, #register, #variations, a.active {
+#lights, #statistics, #login, #register, #variations, #preCompetitive, a.active {
   background-color: #04AA6D;
   color: white;
 }
 
-#lights, #statistics, #login, #register, #variations, a:hover:not(.active) {
+#lights, #statistics, #login, #register, #variations, #preCompetitive, a:hover:not(.active) {
   background-color: #555;
   color: white;
 }
