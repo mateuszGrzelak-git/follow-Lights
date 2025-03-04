@@ -28,16 +28,7 @@ namespace backend.Controllers
                 Password = request.Password
             };
 
-            var userProgress = new UserProgress
-            {
-                Id = Guid.NewGuid(),
-                UserId = user.Id,
-                Rank = 0,
-                UpdateTime = DateTime.UtcNow
-            };
-
             _userRepository.AddUser(user);
-            //_userRepository.AddUserProgress(userProgress);
 
 
             var response = new UserResponse

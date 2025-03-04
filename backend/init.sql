@@ -1,5 +1,5 @@
 -- Check if the database exists, and create it if not
-IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = 'your_database_name')
+--IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = 'your_database_name')
 BEGIN
     CREATE DATABASE your_database_name;
 END;
