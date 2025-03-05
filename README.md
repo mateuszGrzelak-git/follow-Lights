@@ -10,4 +10,5 @@ Frontend installation instructions:
 4. Start a server with 'pnpm run dev'
 
 Backend installation instructions:
-Open sln project in Rider or vs
+docker compose up
+dotnet run

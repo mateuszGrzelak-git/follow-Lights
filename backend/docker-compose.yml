@@ -25,6 +25,7 @@ services:
       - SA_PASSWORD=yourStrongPassword123
     ports:
       - "1433:1433"
+    restart: always
     volumes:
       - mssql-data:/var/opt/mssql
       - ./init.sql:/init.sql

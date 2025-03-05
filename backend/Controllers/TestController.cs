@@ -28,7 +28,7 @@ namespace backend.Controllers
                     return StatusCode(500, "Database context is not initialized.");
                 }
 
-                var users = _context.Users.Include(u => u.UserProgress).ToList();
+                var users = _context.Users.ToList();
                 Console.WriteLine($"Number of users fetched: {users.Count}");
 
                 if (!users.Any())

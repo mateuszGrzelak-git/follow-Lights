@@ -6,7 +6,7 @@ namespace backend.Domain
 {
     public class UserProgress
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Guid Id { get; set; } 
         public List<int> Results { get; set; } = new List<int>();
         public int Rank { get; set; }
         public DateTime UpdateTime { get; set; }
