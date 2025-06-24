@@ -1,7 +1,11 @@
+import Home from "../page";
 import HeroRegister from "./ui/HeroRegister";
 
 
 export default function Register()
 {
-    return <HeroRegister/>
+    return <>
+    <Home/>
+    <HeroRegister/>
+    </>
 }

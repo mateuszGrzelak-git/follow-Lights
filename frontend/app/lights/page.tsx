@@ -2,6 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import Light from "./ui/light";
+import Home from "../page";
 
 type LightHandle = {
   //do light event przyjęto typ void
@@ -89,6 +90,7 @@ export default function Lights() {
 
   return (
     <React.Fragment>
+      <Home/>
       <div className="grid grid-cols-3 gap-4">
         {Array.from({ length: count }).map((_, index) => (
           <Light

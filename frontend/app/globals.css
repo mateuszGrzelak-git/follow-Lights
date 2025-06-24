@@ -20,6 +20,9 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+body > *:not(#navBar) {
+  margin-left: 25%;
+}
 
 #navBar {
   list-style-type: none;
