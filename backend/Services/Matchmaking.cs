@@ -16,11 +16,10 @@ namespace backend.Services
             UserProgress[] potentialOpponents = new UserProgress[userProgress.Length];
 
             foreach (var item in userProgress) {
-            {
-                    //if (item.isActive())
-                    {
-                        potentialOpponents.Append(item);
-                    }
+                //if (item.isActive())
+                {
+                    potentialOpponents.Append(item);
+                }
             }
         }
     }
