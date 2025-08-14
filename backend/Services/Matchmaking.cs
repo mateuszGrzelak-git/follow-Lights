@@ -1,26 +1,56 @@
 ﻿using backend.Domain;
+using backend.Repositories;
 
 namespace backend.Services
 {
     public class Matchmaking
     {
-        UserProgress[] userProgress;
+        private UserRepository _userRepository;
+        private UserProgressRepository _userProgressRepository;
+        private int _initialMatchmakingScoreRadius;
+        private int _limitMatchmakingScoreRadius;
 
-        public Matchmaking(UserProgress[] userProgress)
+        public Matchmaking(UserRepository userRepository, UserProgressRepository userProgressRepository, int initialMatchmakingScoreRadius = 1, int limitMatchmakingScoreRadius = 100)
         {
-            this.userProgress = userProgress;
+            _userRepository = userRepository;
+            _userProgressRepository = userProgressRepository;
+            _initialMatchmakingScoreRadius = initialMatchmakingScoreRadius;
+            _limitMatchmakingScoreRadius = limitMatchmakingScoreRadius;
         }
 
-        public void findMatch(UserProgress first)
+        private User? findOpponent(User user, int matchmakingScoreRadius, IEnumerable<UserProgress> userProgresses)
         {
-            UserProgress[] potentialOpponents = new UserProgress[userProgress.Length];
+            foreach (UserProgress userProgress in userProgresses)
+            {
+                if
+                (
+                    (
+                        Math.Abs
+                        (userProgress.Rank - user.UserProgress.Rank)
+                            <
+                        matchmakingScoreRadius
+                    )
+                    &&
+                    (
+                        _userRepository.GetUser(userProgress.UserId).Active
+                    )
+                )
 
-            foreach (var item in userProgress) {
-                //if (item.isActive())
                 {
-                    potentialOpponents.Append(item);
+                    return _userRepository.GetUser(userProgress.UserId);
                 }
             }
+
+            if (matchmakingScoreRadius < 100)
+                return findOpponent(user, matchmakingScoreRadius * 2, userProgresses);
+            return null;
+        }
+
+        public User? matchmake(User user)
+        {
+            IEnumerable<UserProgress> userProgresses = _userProgressRepository.GetAllUserProgress();
+
+            return findOpponent(user, _initialMatchmakingScoreRadius, userProgresses);
         }
     }
 }

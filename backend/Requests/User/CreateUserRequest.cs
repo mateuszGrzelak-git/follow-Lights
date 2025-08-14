@@ -3,5 +3,6 @@ namespace backend.Requests.User;
     {
         public string Username { get; init; } = default!;
         public string Email { get; init; } = default!;
+        public bool Active { get; init; } = default!;
         public string Password { get; init; } = default!;
     }

@@ -26,7 +26,8 @@ namespace backend.Controllers
                 Id = Guid.NewGuid(),
                 Username = request.Username,
                 Email = request.Email,
-                Password = request.Password
+                Password = request.Password,
+                Active = request.Active
             };
 
             _userRepository.AddUser(user);

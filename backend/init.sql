@@ -16,7 +16,8 @@ BEGIN
         Id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
         Username NVARCHAR(255) NOT NULL,
         Email NVARCHAR(255) NOT NULL,
-        Password NVARCHAR(255) NOT NULL
+        Password NVARCHAR(255) NOT NULL,
+        Active BIT NOT NULL DEFAULT 1
     );
 END;
 GO

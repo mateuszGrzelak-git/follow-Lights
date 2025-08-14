@@ -13,10 +13,12 @@ namespace backend.Controllers
     public class OpponentController : ControllerBase
     {
         private readonly UserRepository _userRepository;
+        private readonly UserProgressRepository _userProgressRepository;
 
-        public OpponentController(UserRepository userRepository)
+        public OpponentController(UserRepository userRepository, UserProgressRepository userProgressRepository)
         {
             _userRepository = userRepository;
+            _userProgressRepository = userProgressRepository;
         }
 
         [HttpGet]
@@ -29,12 +31,22 @@ namespace backend.Controllers
                 return NotFound();
             }
 
-            UserProgress[] userProgresses = { user.UserProgress };
-            Matchmaking matchmaking = new Matchmaking(userProgresses);
+            Matchmaking matchmaking = new Matchmaking(_userRepository, _userProgressRepository);
 
-            matchmaking.findMatch(user.UserProgress);
+            var foundOpponent = matchmaking.matchmake(user);
 
-            var response = JsonSerializer.Serialize(user);      
+            if (foundOpponent == null)
+            {
+                return NotFound();
+            }
+
+            string response = JsonSerializer.Serialize(foundOpponent);
+            //UserProgress[] userProgresses = { user.UserProgress };
+            //Matchmaking matchmaking = new Matchmaking(userProgresses);
+
+            //.matchmaking.findMatch(user.UserProgress);
+
+            //var response = JsonSerializer.Serialize(user);      
 
             //var response = new UserResponse()
             //{
