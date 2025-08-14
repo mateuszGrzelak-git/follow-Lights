@@ -67,25 +67,25 @@ namespace backend.Controllers
         {
             var users = _userRepository.GetAllUsers();
 
-            //var response = new GetAllUsersResponse
-            //{
-            //    Users = users.Select(
-            //        user => new UserResponse
-            //    {
-            //        Id = user.Id,
-            //        Username = user.Username,
-            //        Email = user.Email
-            //    }
-            //    
-            //    ).ToList()
-            //};
-
-            string response = "";
-
-            foreach (User user in users)
+            var response = new GetAllUsersResponse
             {
-                response += JsonSerializer.Serialize(user);
-            }
+                Users = users.Select(
+                    user => new UserResponse
+                    {
+                        Id = user.Id,
+                        Username = user.Username,
+                        Email = user.Email
+                    }
+                
+                ).ToList()
+            };
+
+            //string response = "";
+
+            //foreach (User user in users)
+            //{
+            //    response += JsonSerializer.Serialize(user);
+            //}
 
             return Ok(response);
         }

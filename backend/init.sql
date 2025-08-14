@@ -23,11 +23,11 @@ END;
 GO
 
 -- Check if the 'UserProgress' table exists, and create it if not
-IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'UserProgress')
+IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'UserProgresses')
 BEGIN
-    CREATE TABLE UserProgress (
+    CREATE TABLE UserProgresses (
         Id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
-        Results INT NOT NULL,
+        Results NVARCHAR(MAX) NOT NULL,
         Rank INT NOT NULL,
         UpdateTime DATE NOT NULL,
         UserId UNIQUEIDENTIFIER,

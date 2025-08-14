@@ -34,6 +34,10 @@ namespace backend.Services
                     (
                         _userRepository.GetUser(userProgress.UserId).Active
                     )
+                    &&
+                    (
+                        _userRepository.GetUser(userProgress.UserId) != user
+                    )
                 )
 
                 {
