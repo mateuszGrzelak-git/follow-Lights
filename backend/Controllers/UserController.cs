@@ -3,6 +3,7 @@ using backend.Domain;
 using backend.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using backend.Requests.User;
+using System.Text.Json;
 
 namespace backend.Controllers
 {
@@ -31,12 +32,13 @@ namespace backend.Controllers
             _userRepository.AddUser(user);
 
 
-            var response = new UserResponse
-            {
-                Id = user.Id,
-                Username = user.Username,
-                Email = user.Email
-            };
+            var response = JsonSerializer.Serialize(user);
+            //var response = new UserResponse
+            //{
+            //    Id = user.Id,
+            //    Username = user.Username,
+            //    Email = user.Email
+            //};
             
             return CreatedAtAction(nameof(GetUser), new { id = user.Id }, response);
         }
@@ -47,13 +49,14 @@ namespace backend.Controllers
             var user = _userRepository.GetUser(id);
             if (user == null)
                 return NotFound();
-            
-            var response = new UserResponse
-            {
-                Id = user.Id,
-                Username = user.Username,
-                Email = user.Email
-            };
+
+            var response = JsonSerializer.Serialize(user);
+            //var response = new UserResponse
+            //{
+            //    Id = user.Id,
+            //    Username = user.Username,
+            //    Email = user.Email
+            //};
 
             return Ok(response);
         }
@@ -62,16 +65,26 @@ namespace backend.Controllers
         public IActionResult GetAllUsers()
         {
             var users = _userRepository.GetAllUsers();
-            
-            var response = new GetAllUsersResponse
+
+            //var response = new GetAllUsersResponse
+            //{
+            //    Users = users.Select(
+            //        user => new UserResponse
+            //    {
+            //        Id = user.Id,
+            //        Username = user.Username,
+            //        Email = user.Email
+            //    }
+            //    
+            //    ).ToList()
+            //};
+
+            string response = "";
+
+            foreach (User user in users)
             {
-                Users = users.Select(user => new UserResponse
-                {
-                    Id = user.Id,
-                    Username = user.Username,
-                    Email = user.Email
-                }).ToList()
-            };
+                response += JsonSerializer.Serialize(user);
+            }
 
             return Ok(response);
         }
