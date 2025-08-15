@@ -18,8 +18,18 @@ namespace backend.Services
             _limitMatchmakingScoreRadius = limitMatchmakingScoreRadius;
         }
 
+        private void createUserProgressIfNotExists(User user)
+        {
+            if (user.UserProgress == null)
+            {
+                user.UserProgress = new UserProgress();
+            }
+        }
+
         private User? findOpponent(User user, int matchmakingScoreRadius, IEnumerable<UserProgress> userProgresses)
         {
+            createUserProgressIfNotExists(user);
+
             foreach (UserProgress userProgress in userProgresses)
             {
                 if
@@ -36,7 +46,7 @@ namespace backend.Services
                     )
                     &&
                     (
-                        _userRepository.GetUser(userProgress.UserId) != user
+                        _userRepository.GetUser(userProgress.UserId).Id != user.Id
                     )
                 )
 

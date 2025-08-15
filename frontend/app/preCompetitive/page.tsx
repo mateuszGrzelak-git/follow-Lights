@@ -13,11 +13,15 @@ export default function preCompetitive()
             const getOpponentRequest = await fetch('http://127.0.0.1:5076/api/User')
             const getPlayerRequest = await fetch('http://127.0.0.1:5076/api/User')
 
+            const opponentData = await getOpponentRequest.json();
+            const playerData = await getPlayerRequest.json();
+
+
             var opponent = new User();
-            opponent.copyInto(getOpponentRequest);
+            opponent.copyInto(opponentData);
 
             var player = new User();
-            player.copyInto(getPlayerRequest);
+            player.copyInto(playerData);
         }
         
         getOpponent();

@@ -21,12 +21,6 @@ export default function StartFrom5() {
   const generateSequence = () => {
     const newSequence = [...sequence, Math.floor(Math.random() * count)];
     setSequence(newSequence);
-
-    for (;sequence.length<5;)
-    {
-    const newSequence = [...sequence, Math.floor(Math.random() * count)];
-    setSequence(newSequence);
-    }
     playSequence(newSequence);
   };
 
