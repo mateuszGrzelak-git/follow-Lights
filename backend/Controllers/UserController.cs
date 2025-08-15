@@ -12,12 +12,14 @@ namespace backend.Controllers
     public class UserController : ControllerBase
     {
         private readonly UserRepository _userRepository;
+        private readonly UserProgressRepository _userProgressRepository;
 
-        public UserController(UserRepository userRepository)
+        public UserController(UserRepository userRepository, UserProgressRepository userProgressRepository)
         {
             _userRepository = userRepository;
+            _userProgressRepository = userProgressRepository;
         }
-        
+
         [HttpPost]
         public IActionResult CreateUser([FromBody] CreateUserRequest request)
         {
@@ -40,7 +42,7 @@ namespace backend.Controllers
             //    Username = user.Username,
             //    Email = user.Email
             //};
-            
+
             return CreatedAtAction(nameof(GetUser), new { id = user.Id }, response);
         }
 
@@ -76,7 +78,7 @@ namespace backend.Controllers
                         Username = user.Username,
                         Email = user.Email
                     }
-                
+
                 ).ToList()
             };
 
@@ -88,6 +90,25 @@ namespace backend.Controllers
             //}
 
             return Ok(response);
+        }
+
+        [HttpPost("updateUserPoints")]
+        public IActionResult updateUserPoints(Guid id, int pointsForWin)
+        {
+            User user = _userRepository.GetUser(id);
+
+            if (user == null)
+                return NotFound();
+
+            UserProgress userProgress = user.UserProgress;
+            userProgress.Rank += pointsForWin;
+            userProgress.Results.Append(pointsForWin);
+
+            _userRepository.UpdateUser(user);
+            _userProgressRepository.UpdateUserProgress(userProgress);
+
+
+            return Ok("The user: " + user.Username + " Now has: " + userProgress.Rank + " points.");
         }
     }
 }
