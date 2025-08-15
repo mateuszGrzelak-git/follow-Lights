@@ -22,7 +22,17 @@ namespace backend.Services
         {
             if (user.UserProgress == null)
             {
-                user.UserProgress = new UserProgress();
+                UserProgress userProgress = new UserProgress()
+                {
+                    Id = Guid.NewGuid(),
+                    Results = new List<int>(),
+                    Rank = 0,
+                    UpdateTime = DateTime.Now,
+                    UserId = user.Id
+                };
+
+                _userProgressRepository.AddUserProgress(userProgress);
+                user.UserProgress = userProgress;
             }
         }
 
