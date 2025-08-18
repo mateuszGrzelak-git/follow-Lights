@@ -30,7 +30,13 @@ useEffect(() => {
             newOpponent.copyInto(opponentData);
 
             const newPlayer = new User();
-            newPlayer.copyInto(playerData);
+            newPlayer.copyInto({
+                Id: playerData.users[0].id,
+                Username: playerData.users[0].username,
+                Email: playerData.users[0].email,
+                Password: "",
+                UserProgress: null
+            });
 
             console.log("Mapped opponent:", newOpponent);
             console.log("Mapped player:", newPlayer);
@@ -52,13 +58,13 @@ useEffect(() => {
     <p>
         opponent:{" "}
         <span className="Score">
-            {opponent ? opponent.username : "Loading..."}
+            {opponent ? opponent.Username : "Loading..."}
         </span>
     </p>
     <p>
         player:{" "}
         <span className="Score">
-            {player ? player.username : "Loading..."}
+            {player ? player.Username : "Loading..."}
         </span>
     </p>
     </>

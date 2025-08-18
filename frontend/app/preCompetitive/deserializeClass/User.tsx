@@ -1,17 +1,15 @@
-// ./deserializeClass/User.ts
-
 export class User {
-  id: string = "";
-  username: string = "";
-  password: string = "";
-  email: string = "";
-  userProgress: any;
+  Id: string = "";
+  Username: string = "";
+  Password: string = "";
+  Email: string = "";
+  UserProgress: any;
 
   copyInto(data: any) {
-    this.id = data.id;
-    this.username = data.username;
-    this.password = data.password;
-    this.email = data.email;
-    this.userProgress = data.userProgress;
+    this.Id = data.Id;
+    this.Username = data.Username;
+    this.Password = data.Password;
+    this.Email = data.Email;
+    this.UserProgress = data.UserProgress;
   }
 }
