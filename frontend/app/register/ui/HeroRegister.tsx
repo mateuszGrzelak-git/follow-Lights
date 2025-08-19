@@ -1,27 +1,33 @@
 "use client";
 import React, { useState } from "react";
 
-const registerPerson = async (login: string, email: string, password: string) => {
-    if (!login || !email || !password) {
+const registerPerson = async (username: string, email: string, password: string) => {
+    if (!username || !email || !password) {
         console.error("Invalid user data provided for registration.");
         return;
     }
 
     try {
-        const response = await fetch("/api/register", {
+        const response = await fetch("http://127.0.0.1:5076/api/User", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "accept": "*/*"
             },
-            body: JSON.stringify({ login, email, password }),
+            body: JSON.stringify({
+                username,   // zamiast login
+                email,
+                password,
+                active: true
+            }),
         });
 
         const data = await response.json();
 
         if (response.ok) {
-            console.log("File saved successfully:", data.message);
+            console.log("User registered successfully:", data);
         } else {
-            console.error("Error:", data.error);
+            console.error("Error while registering user:", data);
         }
     } catch (error) {
         console.error("Failed to send data to the server:", error);
@@ -30,14 +36,14 @@ const registerPerson = async (login: string, email: string, password: string) =>
 
 export default function Register() {
     const [email, setEmail] = useState("");
-    const [login, setLogin] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [isRegistered, setIsRegistered] = useState(false);
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
+        await registerPerson(username, email, password);
         setIsRegistered(true);
-        await registerPerson(login, email, password);
     };
 
     return (
@@ -71,8 +77,8 @@ export default function Register() {
                                 placeholder="username"
                                 className="input input-bordered"
                                 required
-                                value={login}
-                                onChange={(e) => setLogin(e.target.value)}
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
                             />
                         </div>
                         <div className="form-control">
@@ -93,6 +99,11 @@ export default function Register() {
                                 Register
                             </button>
                         </div>
+                        {isRegistered && (
+                            <p className="text-green-500 mt-2">
+                                Rejestracja zakończona pomyślnie!
+                            </p>
+                        )}
                     </form>
                 </div>
             </div>
