@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heruka_urgyen/react-playing-cards": "github:heruka-urgyen/react-playing-cards",
     "autoprefixer": "^10.4.20",
     "chart.js": "^4.5.0",
     "next": "15.0.3",

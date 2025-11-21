@@ -19,6 +19,8 @@ export default function Home() {
     <Link href="/gameVariations" id="variations">Variations</Link>
     </li><li>
     <Link href="/preCompetitive" id="preCompetitive">Competitive</Link>
+    </li><li>
+    <Link href="/cards" id="cards">Cards</Link>
   <Tooltip/>
   </li>
   </ul>

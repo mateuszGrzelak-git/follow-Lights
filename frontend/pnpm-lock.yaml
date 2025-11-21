@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@heruka_urgyen/react-playing-cards':
+        specifier: github:heruka-urgyen/react-playing-cards
+        version: https://codeload.github.com/heruka-urgyen/react-playing-cards/tar.gz/32f965725a22b7a057198dbf7883185586390c20(react@19.0.0-rc-66855b96-20241106)
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.49)
@@ -57,6 +60,12 @@ packages:
 
   '@emnapi/runtime@1.3.1':
     resolution: {integrity: sha512-kEBmG8KyqtxJZv+ygbEim+KCGtIq1fC22Ms3S4ziXmYKm8uyoLX0MHONVKwp+9opg390VaKRNt4a7A9NwmpNhw==}
+
+  '@heruka_urgyen/react-playing-cards@https://codeload.github.com/heruka-urgyen/react-playing-cards/tar.gz/32f965725a22b7a057198dbf7883185586390c20':
+    resolution: {tarball: https://codeload.github.com/heruka-urgyen/react-playing-cards/tar.gz/32f965725a22b7a057198dbf7883185586390c20}
+    version: 0.5.0
+    peerDependencies:
+      react: ^16.13.1
 
   '@img/sharp-darwin-arm64@0.33.5':
     resolution: {integrity: sha512-UT4p+iz/2H4twwAoLCqfA9UH5pI6DggwKEGuaPy7nCVQ8ZsiY5PIcrRvD1DzuY3qYL07NtIQcWnBSY/heikIFQ==}
@@ -825,6 +834,10 @@ snapshots:
     dependencies:
       tslib: 2.8.1
     optional: true
+
+  '@heruka_urgyen/react-playing-cards@https://codeload.github.com/heruka-urgyen/react-playing-cards/tar.gz/32f965725a22b7a057198dbf7883185586390c20(react@19.0.0-rc-66855b96-20241106)':
+    dependencies:
+      react: 19.0.0-rc-66855b96-20241106
 
   '@img/sharp-darwin-arm64@0.33.5':
     optionalDependencies:
