@@ -35,19 +35,19 @@ body > *:not(#navBar) {
   overflow: auto;
 }
 
-#lights, #statistics, #login, #register, #variations, #preCompetitive, a {
+#lights, #statistics, #login, #register, #variations, #preCompetitive, #cards, #images-game, a {
   display: block;
   color: #000;
   padding: 8px 16px;
   text-decoration: none;
 }
 
-#lights, #statistics, #login, #register, #variations, #preCompetitive, a.active {
+#lights, #statistics, #login, #register, #variations, #preCompetitive, #cards, #images-game, a.active {
   background-color: #04AA6D;
   color: white;
 }
 
-#lights, #statistics, #login, #register, #variations, #preCompetitive, a:hover:not(.active) {
+#lights, #statistics, #login, #register, #variations, #preCompetitive, #cards, #images-game, a:hover:not(.active) {
   background-color: #555;
   color: white;
 }
