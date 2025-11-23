@@ -1,18 +1,12 @@
 "use client";
+import Home from "../page";
+import CardsGame from "./CardsGame";
 
-import dyn from "next/dynamic"; // ← zmieniona nazwa
-
-export const dynamic = "force-dynamic"; // ← OK
-
-const Card = dyn(
-  () => import("@heruka_urgyen/react-playing-cards/lib/FcB"),
-  { ssr: false }
-);
+export const dynamic = "force-dynamic";
 
 export default function Cards() {
-  return (
-    <div className="p-8">
-      <Card card="Qs" height="220px" />
-    </div>
-  );
+  return <>
+  <Home/>
+  <CardsGame />;
+  </>
 }
