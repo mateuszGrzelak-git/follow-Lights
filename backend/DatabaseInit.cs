@@ -9,6 +9,7 @@ namespace backend
         public DatabaseInit(DbContextOptions<DatabaseInit> options) : base(options) { }
         public DbSet<User> Users { get; set; }
         public DbSet<UserProgress> UserProgresses { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
