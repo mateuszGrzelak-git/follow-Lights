@@ -24,6 +24,8 @@ export default function Home() {
     </li><li>
     <Link href="/imagesGame" id="ImagesGameMenu">Images-Game</Link>
     </li><li>
+    <Link href="/blog" id="blog">Blog</Link>
+    </li><li>
   <Tooltip/>
   </li>
   </ul>
