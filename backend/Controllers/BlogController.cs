@@ -6,7 +6,7 @@ namespace backend.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class BlogController
+public class BlogController : ControllerBase
 {
     private IBlogRepository _blogRepository;
     
@@ -16,26 +16,32 @@ public class BlogController
     }
     
     [HttpPost]
-    public void CreateBlog([FromBody] Blog blog)
+    public IActionResult CreateBlog([FromBody] Blog blog)
     {
         _blogRepository.AddBlog(blog);    
+        return CreatedAtAction(nameof(GetBlog), new { id = blog.Id }, blog);
+    }
+
+    [HttpGet("{id:guid}")]
+    public IActionResult GetBlog(Guid id)
+    {
+        Blog blog = _blogRepository.GetBlog(id);
+        if (blog == null)
+            return NotFound();
+        return Ok(blog);
     }
 
     [HttpGet]
-    public void GetBlog(Guid id)
+    public ActionResult<IEnumerable<Blog>> GetBlogs()
     {
-        _blogRepository.GetBlog(id);
+        var blogs = _blogRepository.GetAllBlogs();
+        return Ok(blogs);
     }
 
-    [HttpGet]
-    public void GetBlogs()
-    {
-        _blogRepository.GetAllBlogs();
-    }
-
-    [HttpPost]
-    public void UpdateBlog([FromBody] Blog blog)
+    [HttpPut("{id:guid}")]
+    public IActionResult UpdateBlog([FromBody] Blog blog)
     {
         _blogRepository.UpdateBlog(blog);
+        return NoContent();
     }
 }
